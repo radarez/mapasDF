@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Ciudad de México | Mapa de las delegaciones del DF</title>
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/superhero/bootstrap.min.css">
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+
+      function initialize(delegacion) 
+      {
+        
+        // Global position map
+        var mexico = new google.maps.LatLng(19.4703012,-99.15332969999997);// Position azcapotzalco
+        var mapOptions = {
+          zoom: 11,
+          center: mexico
+        }
+        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        var ctaLayer = new google.maps.KmlLayer({
+          url: 'http://mapsdf.radarez.com/'+delegacion+'.kml'
+
+        });
+        ctaLayer.setMap(map);
+        
+        var infowindow = new google.maps.InfoWindow({
+          content: 'Ciudad de México',
+          position: mexico
+        });
+        infowindow.open(map);
+        
+        // Events
+        google.maps.event.addDomListener(window, 'click', showAlert);
+      }
+      function showAlert() {
+        // window.alert('RFC');
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize(delegacion));
+    </script>
+
+
+  </head>
+  <body>
+  
+    
+    <h1>Ciudad de México</h1>
+    <ul class="list-unstyled list-inline">
+      <li><h6><a href="#" onclick="initialize('alvaroobregon'); return false;">ÁLVARO OBREGÓN</a></h6></li>
+      <li><h6><a href="#" onclick="initialize('azcapotzalco'); return false;">AZCAPOTZALCO</a></h6></li>
+      <li><h6><a href="#" onclick="initialize('benitojuarez'); return false;">BENITO JUÁREZ</a></h6></li>
+      <li><h6><a href="#" onclick="initialize('coyoacan'); return false;">COYOACÁN</a></h6></li>
+      <li><h6><a href="#" onclick="initialize('cuajimalpa'); return false;">CUAJIMALPA</a></h6></li>
+      <li><h6><a href="#" onclick="initialize('cuauhtemoc'); return false;">CUAUHTÉMOC</a></h6></li>
+      <li><h6><a href="#" onclick="initialize('gustavomadero'); return false;">GUSTAVO A. MADERO</a></h6></li>
+      <li><h6><a href="#" onclick="initialize('iztacalco'); return false;">IZTACALCO</a></h6></li>
+      <li><h6><a href="#" onclick="initialize('iztapalapa'); return false;">IZTAPALAPA</a></h6></li>
+      <li><h6><a href="#" onclick="initialize('magcontreras'); return false;">MAGDALENA CONTRERAS</a></h6></li>
+      <li><h6><a href="#" onclick="initialize('miguelhidalgo'); return false;">MIGUEL HIDALGO</a></h6></li>
+      <li><h6><a href="#" onclick="initialize('milpaalta'); return false;">MILPA ALTA</a></h6></li>
+      <li><h6><a href="#" onclick="initialize('tlahuac'); return false;">TLÁHUAC</a></h6></li>
+      <li><h6><a href="#" onclick="initialize('tlalpan'); return false;">TLALPAN</a></h6></li>
+      <li><h6><a href="#" onclick="initialize('vcarranza'); return false;">VENUSTIANO CARRANZA</a></h6></li>
+      <li><h6><a href="#" onclick="initialize('xochimilco'); return false;">XOCHIMILCO</a></h6></li>
+    </ul>
+    <div id="map-canvas"></div>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,47 +3,71 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Ciudad de México | Mapa de las delegaciones del DF</title>
+    <title>Ciudad de México | Mapa de las delegaciones y colonias del DF</title>
+    <!-- Integración de Twitter Bootstrap para hacer responsive la app -->
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.1/superhero/bootstrap.min.css">
     <style>
+      /*Definir tamaño del canvas que contendrá el mapa*/
       html, body, #map-canvas {
         height: 100%;
         margin: 0px;
-        padding: 0px
+        padding: 0px;
       }
     </style>
+    <!-- Cargamos librería maps desde los repositorios de google -->
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
     <script>
+      /*
+      La función initialize recibe como parámetro el nombre del archivo a mostrar excluyendo la extensión .kml,  el parametro será enviado desde el evento click que se activara cuando el usuario seleccione una delegación.
+      */
 
       function initialize(delegacion) 
       {
         
-        // Global position map
-        var mexico = new google.maps.LatLng(19.4703012,-99.15332969999997);// Position azcapotzalco
+        /*
+        La posición que tomara el mapa en un inicio
+        para esto simplemente le pasamos las cordenadas del sitio que nosotros deseemos
+
+        Para obtener las cordenadas de un sitio especifico pueden hacerlo desde la siguiente página
+        solo tienen que introducir la direccion a buscar y les dara latitud y longitud del sitio.
+        http://www.agenciacreativa.net/coordenadas_google_maps.php
+        */
+       
+        // Latitud y Longitud del sitio que deseamos visualizar de peimera instancia
+        var mexico = new google.maps.LatLng(19.4703012,-99.15332969999997);
         var mapOptions = {
           zoom: 11,
-          center: mexico
+          center: mexico 
         }
+
         var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        /*
+        aqui pasamos el archivo 
+         */
         var ctaLayer = new google.maps.KmlLayer({
-          url: 'http://mapsdf.radarez.com/'+delegacion+'.kml'
+          url: 'http://mapsdf.radarez.com/'+delegacion+'.kml' //Origen del archivo .kml
 
         });
+
         ctaLayer.setMap(map);
         
         var infowindow = new google.maps.InfoWindow({
           content: 'Ciudad de México',
           position: mexico
         });
+        
         infowindow.open(map);
         
-        // Events
+        // Escuchador de eventos
         google.maps.event.addDomListener(window, 'click', showAlert);
       }
+
       function showAlert() {
-        // window.alert('RFC');
+        // window.alert('Mensaje');
       }
 
+      // Cargamos las preferencias de nuestro mapa previamente programadas. 
       google.maps.event.addDomListener(window, 'load', initialize(delegacion));
     </script>
 
@@ -51,8 +75,9 @@
   </head>
   <body>
   
-    
     <h1>Ciudad de México</h1>
+    <!-- Acontinuación una lista de las delegaciones de la ciudad de México para que el usuario
+    tenga la posibilidad de seleccionar la delegacion de su preferencia -->
     <ul class="list-unstyled list-inline">
       <li><h6><a href="#" onclick="initialize('alvaroobregon'); return false;">ÁLVARO OBREGÓN</a></h6></li>
       <li><h6><a href="#" onclick="initialize('azcapotzalco'); return false;">AZCAPOTZALCO</a></h6></li>
@@ -71,22 +96,8 @@
       <li><h6><a href="#" onclick="initialize('vcarranza'); return false;">VENUSTIANO CARRANZA</a></h6></li>
       <li><h6><a href="#" onclick="initialize('xochimilco'); return false;">XOCHIMILCO</a></h6></li>
     </ul>
+    <!-- En map-canvas es donde colocaremos el mapa -->
     <div id="map-canvas"></div>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

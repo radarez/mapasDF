@@ -11,8 +11,8 @@ Salu2
 
 
 
-Adrián Miranda Aparicio.
-Mexicano, emprendedor, desarrollador de software, fundador de Radarez, apasionado por la ciencia y la tecnología, dispuesto a compartir sus notas en la web.
+    Adrián Miranda Aparicio.
+    Mexicano, emprendedor, desarrollador de software, fundador de Radarez, apasionado por la ciencia y la tecnología,        dispuesto a compartir sus notas en la web.
 
     Twitter: @heyAparicio
     Correo: ama@radarez.com
